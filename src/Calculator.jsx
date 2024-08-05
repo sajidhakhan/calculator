@@ -14,17 +14,24 @@ const Calculator = () => {
     };
   
     const handleCalculate = () => {
-      try {
-        const evaluatedResult = eval(input);
-        if (isNaN(evaluatedResult)) {
-          setResult('NaN');
-        } else {
-          setResult(evaluatedResult.toString());
+        try {
+          if (input.trim() === '') {
+            setResult('Error');
+            return;
+          }
+          const evaluatedResult = eval(input);
+          if (evaluatedResult === Infinity) {
+            setResult('Infinity');
+          } else if (isNaN(evaluatedResult)) {
+            setResult('NaN');
+          } else {
+            setResult(evaluatedResult.toString());
+          }
+        } catch (error) {
+          setResult('Error');
         }
-      } catch (error) {
-        setResult('Error');
-      }
-    };
+      };
+    
   
     return (
       <div className="calculator-container">
@@ -40,6 +47,7 @@ const Calculator = () => {
             >
               {btn}
             </button>
+
           ))}
           <button onClick={handleClear} className="calculator-button">C</button>
         </div>
