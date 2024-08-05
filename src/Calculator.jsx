@@ -31,8 +31,7 @@ const Calculator = () => {
           setResult('Error');
         }
       };
-    
-  
+ 
     return (
       <div className="calculator-container">
         <h1>React Calculator</h1>
